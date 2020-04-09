@@ -40,3 +40,5 @@ graylog:
         authPassword: {{ requiredEnv "SENDGRID_PASSWORD" }}
         subjectPrefix: "Kombine"
         fromEmail: "noreply@dts-stn.com"
+    image:
+        repository: "graylog/graylog:3.2.4"
