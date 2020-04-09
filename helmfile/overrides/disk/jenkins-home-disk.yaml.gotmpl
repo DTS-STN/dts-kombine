@@ -1,0 +1,9 @@
+mtsdisk:
+    fullname: jenkins-{{ .Environment.Name }}
+    enabled: true
+    name: jenkins
+    pvcname: jenkins-pvc
+    type: azuredisk
+    size: 8Gi
+    diskname: jenkins-{{ .Environment.Name }}
+    uri: /subscriptions/07f55ef5-e27b-42ca-9771-f2705b08acd1/resourceGroups/MTS-DATA/providers/Microsoft.Compute/disks/jenkins-{{ .Environment.Name }}

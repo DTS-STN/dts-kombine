@@ -1,0 +1,43 @@
+rbac:
+  enabled: true
+aks:
+  fqdn: "{{ requiredEnv "FQDN" }}"
+  region: "canadacentral"
+dashboard:
+  enabled: "true"
+{{- if or (eq .Environment.Name "prod-blue") (eq .Environment.Name "prod-green") }}
+  environmentHost: traefik.{{ requiredEnv "BASE_DOMAIN" }}
+  domain: traefik.{{ requiredEnv "BASE_DOMAIN" }}
+{{ else }}
+  environmentHost: traefik-{{ .Environment.Name }}.{{ requiredEnv "BASE_DOMAIN" }}
+  domain: traefik-{{.Environment.Name}}.{{ requiredEnv "BASE_DOMAIN" }}
+{{ end }}
+ssl:
+  enabled: true
+  enforced: true
+  upstream: false
+  insecureSkipVerify: false
+acme:
+  enabled: true
+  challengeType: dns-01
+  delayBeforeCheck: 1
+  staging: true
+  email: "gocmts@gmail.com"
+  onHostRule: true
+  logging: true
+  dnsProvider:
+    name: azure
+    azure:
+      AZURE_CLIENT_ID: "{{ requiredEnv "TRAEFIK_AZURE_CLIENT_ID" }}"
+      AZURE_CLIENT_SECRET: "{{ requiredEnv "TRAEFIK_AZURE_CLIENT_SECRET" }}"
+      AZURE_SUBSCRIPTION_ID: "{{ requiredEnv "TF_VAR_SUBSCRIPTION_ID" }}"
+      AZURE_TENANT_ID: "{{ requiredEnv "TF_VAR_TENANT_ID" }}"
+      AZURE_RESOURCE_GROUP: "MTSDepot"
+  domains:
+    domainList:
+      - main: "*.{{ requiredEnv "BASE_DOMAIN" }}"
+memoryRequest: 256Mi
+memoryLimit: 512Mi
+cpuRequest: 500m
+cpuLimit: 750m
+

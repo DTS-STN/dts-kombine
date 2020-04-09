@@ -1,0 +1,8 @@
+ingress:
+  enabled: true
+  hosts:
+{{- if or (eq .Environment.Name "prod-blue") (eq .Environment.Name "prod-green") }}
+    - whatenv.{{ requiredEnv "BASE_DOMAIN" }}
+{{ end }}
+    - whatenv.{{ .Environment.Name }}.{{ requiredEnv "BASE_DOMAIN" }}
+environment: {{ .Environment.Name }}

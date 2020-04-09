@@ -1,0 +1,19 @@
+# https://hub.docker.com/r/atlassian/confluence-server
+image:
+  pullPolicy: Always
+  imageFullPath: mtscontainers.azurecr.io/dtsenvironment:0.1.1
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  annotations: {}
+    # kubernetes.io/ingress.class: traefik
+    # kubernetes.io/tls-acme: "true"
+  path: /
+  hosts:
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local

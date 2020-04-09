@@ -1,0 +1,21 @@
+# https://github.com/cptactionhank/docker-atlassian-jira-software
+
+Master:
+   Image: "mtscontainers.azurecr.io/dtsjenkins"
+   ImageTag: "0.2.0"
+   ServiceType: ClusterIP
+   ServicePort: 8080
+   HostName: jenkins.esdc.online
+   Ingress:
+      Enabled: true
+      Annotations: {}
+      # kubernetes.io/ingress.class: traefik
+      # kubernetes.io/tls-acme: "true"
+   resources:
+      requests: 
+        cpu: 500m
+        memory: 4Gi
+      limits:
+        cpu: 1
+        memory: 6Gi
+

@@ -1,0 +1,42 @@
+graylog:
+    ingress:
+        enabled: true
+        annotations:
+        # kubernetes.io/ingress.class: traefik
+        # kubernetes.io/tls-acme: "true"
+        path: /
+        protocol: https
+        hosts:
+{{- if or (eq .Environment.Name "prod-blue") (eq .Environment.Name "prod-green") }}
+        - graylog.{{ requiredEnv "ADMIN_DOMAIN" }}    
+{{- else }}
+        - graylog.{{ .Environment.Name }}.{{ requiredEnv "ADMIN_DOMAIN" }}    
+{{- end }}
+    rbac:
+        create: true
+    rootPassword: "{{ requiredEnv "GRAYLOG_PASSWORD" }}"
+    replicas: 2
+    env:
+{{- if or (eq .Environment.Name "prod-blue") (eq .Environment.Name "prod-green") }}    
+        GRAYLOG_HTTP_EXTERNAL_URI: https://graylog.{{ requiredEnv "ADMIN_DOMAIN" }}/
+{{- else }}
+        GRAYLOG_HTTP_EXTERNAL_URI: https://graylog.{{ .Environment.Name }}.{{ requiredEnv "ADMIN_DOMAIN" }}/
+{{- end }}
+    input:
+        tcp:
+            service:
+                type: ClusterIP
+            ports:
+                - name: gelf
+                  port: 12201
+    transportEmail:
+        enabled: true
+        hostname: smtp.sendgrid.net
+        port: 465
+        useSsl: true
+        useTls: false
+        useAuth: true
+        authUsername: gocdts
+        authPassword: {{ requiredEnv "SENDGRID_PASSWORD" }}
+        subjectPrefix: "Kombine"
+        fromEmail: "noreply@dts-stn.com"

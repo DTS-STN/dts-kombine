@@ -1,0 +1,112 @@
+repositories:
+  - name: dts
+    url: https://helm.dts-stn.com
+
+context: DTS-Dev-K8S
+
+#default values to set for args along with dedicated keys that can be set by contributers, cli args take precedence over these
+helmDefaults:
+  verify: false
+  wait: false
+
+environments:
+  benrd: 
+  marcusrd:
+  bryanrd:
+  prod-blue:
+  prod-green:
+
+releases:
+
+# Namespace ingress
+
+  - name: traefik-{{ .Environment.Name }}
+    chart: stable/traefik
+    namespace: ingress-{{ .Environment.Name }}
+    version: 1.78.2
+    values:
+      - overrides/traefik/traefik.yaml.gotmpl
+    labels:
+        category: ingress
+        app: traefik
+    wait: false
+    installed: true
+    force: false
+
+  - name: environment-{{ .Environment.Name }}
+    chart: dts/dts-environment
+    version: 0.1
+    namespace: ingress-{{ .Environment.Name }}
+    values:
+      - overrides/environment/prod.yaml.gotmpl
+    labels:
+        category: ingress
+        app: whatenv
+    wait: false
+    installed: true
+    force: false
+
+# SPMS
+  - name: graylog-kombine-{{ .Environment.Name }}
+    chart: stable/graylog
+    namespace: kombine-{{ .Environment.Name }}
+    version: 1.6.2
+    values:
+      - overrides/kombine/graylog/graylog.yaml.gotmpl
+    labels:
+        category: kombine
+        app: graylog
+    wait: false
+    installed: true
+    force: false    
+
+  - name: kibana-spms-{{ .Environment.Name }}
+    chart: dts/kibana
+    namespace: spms-{{ .Environment.Name }}
+    version: 7.4.2
+    values:
+      - overrides/spms/elk/kibana.yaml.gotmpl
+    labels:
+        category: spms
+        app: kibana
+        tier: frontend
+    wait: false
+    installed: true
+    force: false    
+
+# ALM Tools
+{{ if or (eq .Environment.Name "prod-blue") (eq .Environment.Name "prod-green") }}
+  - name: jenkins-{{ .Environment.Name }}
+    chart: dts/mts-jenkins
+    version: 0.28.2
+    labels:
+        category: alm
+        app: jenkins
+        tier: frontend
+    values:
+      - overrides/jenkins/values.yaml
+      - overrides/jenkins/prod.yaml.gotmpl
+    namespace: alm-{{ .Environment.Name }}
+    installed: false
+    wait: false
+    recreatePods: true
+    force: false
+
+  - name: jenkins-home-disk-{{ .Environment.Name }}
+    chart: dts/mts-disk
+    version: 0.2.1
+    labels:
+        category: alm
+        app: jenkins
+        tier: disk    
+    values:
+      - overrides/disk/jenkins-home-disk.yaml.gotmpl
+    namespace: alm-{{ .Environment.Name }}
+    installed: false
+    wait: false
+    recreatePods: true
+    force: false
+
+{{ end }}
+
+

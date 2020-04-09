@@ -1,0 +1,34 @@
+Master:
+    AdminPassword: "{{ requiredEnv "JENKINS_ADMIN_PASSWORD" }}"
+{{- if or (eq .Environment.Name "prod-blue") (eq .Environment.Name "prod-green") }}
+    HostName: jenkins.esdc.online
+{{ else }}
+    HostName: jenkins-{{ .Environment.Name }}.esdc.online
+{{ end }}
+ingress:
+    hosts:
+{{- if or (eq .Environment.Name "prod-blue") (eq .Environment.Name "prod-green") }}
+      - jenkins.esdc.online
+{{ end }}
+      - jenkins-{{ .Environment.Name }}.esdc.online
+      - jenkins.{{ .Environment.Name }}.esdc.online
+Persistence:
+{{- if or (eq .Environment.Name "prod-blue") (eq .Environment.Name "prod-green") }}
+    Enabled: true
+    ExistingClaim: jenkins-pvc
+{{ else }}
+    Enabled: false
+{{ end }}
+    mounts: 
+      - mountPath: "/var/run/docker.sock"
+        name: dockersock
+      - mountPath: /var/mts-home
+        name: mts-home
+        readOnly: false
+    volumes:
+      - name: mts-home
+        persistentVolumeClaim:
+            claimName: jenkins-mts-home-pvc
+      - name: dockersock
+        hostPath:
+          path: /var/run/docker.sock
