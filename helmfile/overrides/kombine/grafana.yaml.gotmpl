@@ -1,0 +1,8 @@
+ingress:
+  enabled: true
+  hosts: 
+    - grafana.{{ .Environment.Name }}.{{ requiredEnv "ADMIN_DOMAIN"}}
+adminUser: admin
+adminPassword: "{{ requiredEnv "GRAFANA_ADMIN_PASSWORD"}}"
+persistence:
+  enabled: false
