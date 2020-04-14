@@ -1,0 +1,18 @@
+ingress:
+  enabled: true
+  hosts: 
+{{- if or (eq .Environment.Name "prod-blue") (eq .Environment.Name "prod-green") }}
+    - kibana.{{ requiredEnv "ADMIN_DOMAIN" }}    
+{{- else }}
+    - kibana.{{ .Environment.Name }}.{{ requiredEnv "ADMIN_DOMAIN" }}    
+{{- end }}
+adminUser: admin
+adminPassword: "{{ requiredEnv "KIBANA_ADMIN_PASSWORD"}}"
+env:
+  ELASTICSEARCH_URL: "http://graylog-kombine-{{ .Environment.Name }}-elasticsearch-client:9200"
+image:
+  repository: "docker.elastic.co/kibana/kibana-oss"
+  tag: "6.5.4"  
+service:
+  externalPort: 80
+  

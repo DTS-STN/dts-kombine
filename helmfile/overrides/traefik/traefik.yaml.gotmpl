@@ -1,5 +1,7 @@
 rbac:
   enabled: true
+deploymentStrategy: 
+  type: Recreate
 aks:
   fqdn: "{{ requiredEnv "FQDN" }}"
   region: "canadacentral"
@@ -12,9 +14,13 @@ dashboard:
   environmentHost: traefik-{{ .Environment.Name }}.{{ requiredEnv "BASE_DOMAIN" }}
   domain: traefik-{{.Environment.Name}}.{{ requiredEnv "BASE_DOMAIN" }}
 {{ end }}
+kubernetes:
+  namespaces:
+  - ingress-benrd
+  - kombine-benrd
 ssl:
   enabled: true
-  enforced: true
+  enforced: false
   upstream: false
   insecureSkipVerify: false
 acme:
@@ -40,4 +46,5 @@ memoryRequest: 256Mi
 memoryLimit: 512Mi
 cpuRequest: 500m
 cpuLimit: 750m
-
+debug:
+  enabled: true
