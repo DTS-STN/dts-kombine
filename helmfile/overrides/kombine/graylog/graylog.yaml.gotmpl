@@ -25,10 +25,12 @@ graylog:
     input:
         tcp:
             service:
-                type: ClusterIP
+                type: LoadBalancer
             ports:
                 - name: gelf
                   port: 12201
+                - name: beats
+                  port: 5044
     transportEmail:
         enabled: true
         hostname: smtp.sendgrid.net

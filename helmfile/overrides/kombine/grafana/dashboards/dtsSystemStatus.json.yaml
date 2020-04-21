@@ -1,0 +1,1521 @@
+dashboards: 
+  default:
+     dtsSystemStatus:
+       json: |
+        {
+            "annotations": {
+            "list": [
+                {
+                "builtIn": 1,
+                "datasource": "-- Grafana --",
+                "enable": true,
+                "hide": true,
+                "iconColor": "rgba(0, 211, 255, 1)",
+                "name": "Annotations & Alerts",
+                "type": "dashboard"
+                }
+            ]
+            },
+            "editable": true,
+            "gnetId": null,
+            "graphTooltip": 0,
+            "id": 1,
+            "links": [],
+            "panels": [
+            {
+                "collapsed": false,
+                "datasource": null,
+                "gridPos": {
+                "h": 1,
+                "w": 24,
+                "x": 0,
+                "y": 0
+                },
+                "id": 15,
+                "panels": [],
+                "title": "Project Management",
+                "type": "row"
+            },
+            {
+                "cacheTimeout": null,
+                "colorBackground": true,
+                "colorValue": true,
+                "colors": [
+                "#299c46",
+                "rgba(237, 129, 40, 0.89)",
+                "#d44a3a"
+                ],
+                "datasource": null,
+                "format": "none",
+                "gauge": {
+                "maxValue": 100,
+                "minValue": 0,
+                "show": false,
+                "thresholdLabels": false,
+                "thresholdMarkers": true
+                },
+                "gridPos": {
+                "h": 6,
+                "w": 3,
+                "x": 0,
+                "y": 1
+                },
+                "id": 13,
+                "interval": null,
+                "links": [],
+                "mappingType": 1,
+                "mappingTypes": [
+                {
+                    "name": "value to text",
+                    "value": 1
+                },
+                {
+                    "name": "range to text",
+                    "value": 2
+                }
+                ],
+                "maxDataPoints": 100,
+                "nullPointMode": "connected",
+                "nullText": null,
+                "pluginVersion": "6.7.1",
+                "postfix": "",
+                "postfixFontSize": "50%",
+                "prefix": "",
+                "prefixFontSize": "50%",
+                "rangeMaps": [
+                {
+                    "from": "null",
+                    "text": "N/A",
+                    "to": "null"
+                }
+                ],
+                "sparkline": {
+                "fillColor": "rgba(31, 118, 189, 0.18)",
+                "full": false,
+                "lineColor": "rgb(31, 120, 193)",
+                "show": false,
+                "ymax": null,
+                "ymin": null
+                },
+                "tableColumn": "",
+                "targets": [
+                {
+                    "aggregation": "Last",
+                    "alias": "status",
+                    "bucketAggs": [
+                    {
+                        "fake": true,
+                        "field": "timestamp",
+                        "id": "3",
+                        "settings": {
+                        "interval": "auto",
+                        "min_doc_count": 0,
+                        "trimEdges": 0
+                        },
+                        "type": "date_histogram"
+                    }
+                    ],
+                    "crit": 0,
+                    "decimals": 2,
+                    "displayAliasType": "Warning / Critical",
+                    "displayType": "Regular",
+                    "displayValueWithAlias": "Never",
+                    "metrics": [
+                    {
+                        "field": "number_status",
+                        "id": "1",
+                        "meta": {},
+                        "settings": {},
+                        "type": "avg"
+                    }
+                    ],
+                    "query": "_exists_: heartbeat_monitor_status AND source: \"taiga\"",
+                    "refId": "A",
+                    "timeField": "timestamp",
+                    "units": "none",
+                    "valueHandler": "Number Threshold",
+                    "warn": 0
+                }
+                ],
+                "thresholds": "99,100",
+                "timeFrom": null,
+                "timeShift": null,
+                "title": "Taiga",
+                "type": "singlestat",
+                "valueFontSize": "80%",
+                "valueMaps": [
+                {
+                    "op": "=",
+                    "text": "N/A",
+                    "value": "null"
+                }
+                ],
+                "valueName": "current"
+            },
+            {
+                "cacheTimeout": null,
+                "colorBackground": true,
+                "colorValue": true,
+                "colors": [
+                "#299c46",
+                "rgba(237, 129, 40, 0.89)",
+                "#d44a3a"
+                ],
+                "datasource": null,
+                "format": "none",
+                "gauge": {
+                "maxValue": 100,
+                "minValue": 0,
+                "show": false,
+                "thresholdLabels": false,
+                "thresholdMarkers": true
+                },
+                "gridPos": {
+                "h": 6,
+                "w": 3,
+                "x": 3,
+                "y": 1
+                },
+                "id": 7,
+                "interval": null,
+                "links": [],
+                "mappingType": 1,
+                "mappingTypes": [
+                {
+                    "name": "value to text",
+                    "value": 1
+                },
+                {
+                    "name": "range to text",
+                    "value": 2
+                }
+                ],
+                "maxDataPoints": 100,
+                "nullPointMode": "connected",
+                "nullText": null,
+                "pluginVersion": "6.7.1",
+                "postfix": "",
+                "postfixFontSize": "50%",
+                "prefix": "",
+                "prefixFontSize": "50%",
+                "rangeMaps": [
+                {
+                    "from": "null",
+                    "text": "N/A",
+                    "to": "null"
+                }
+                ],
+                "sparkline": {
+                "fillColor": "rgba(31, 118, 189, 0.18)",
+                "full": false,
+                "lineColor": "rgb(31, 120, 193)",
+                "show": false,
+                "ymax": null,
+                "ymin": null
+                },
+                "tableColumn": "",
+                "targets": [
+                {
+                    "aggregation": "Last",
+                    "alias": "status",
+                    "bucketAggs": [
+                    {
+                        "fake": true,
+                        "field": "timestamp",
+                        "id": "3",
+                        "settings": {
+                        "interval": "auto",
+                        "min_doc_count": 0,
+                        "trimEdges": 0
+                        },
+                        "type": "date_histogram"
+                    }
+                    ],
+                    "crit": 0,
+                    "decimals": 2,
+                    "displayAliasType": "Warning / Critical",
+                    "displayType": "Regular",
+                    "displayValueWithAlias": "Never",
+                    "metrics": [
+                    {
+                        "field": "number_status",
+                        "id": "1",
+                        "meta": {},
+                        "settings": {},
+                        "type": "avg"
+                    }
+                    ],
+                    "query": "_exists_: heartbeat_monitor_status AND source: jira",
+                    "refId": "A",
+                    "timeField": "timestamp",
+                    "units": "none",
+                    "valueHandler": "Number Threshold",
+                    "warn": 0
+                }
+                ],
+                "thresholds": "99,100",
+                "timeFrom": null,
+                "timeShift": null,
+                "title": "Jira",
+                "type": "singlestat",
+                "valueFontSize": "80%",
+                "valueMaps": [
+                {
+                    "op": "=",
+                    "text": "N/A",
+                    "value": "null"
+                }
+                ],
+                "valueName": "current"
+            },
+            {
+                "cacheTimeout": null,
+                "colorBackground": true,
+                "colorValue": true,
+                "colors": [
+                "#299c46",
+                "rgba(237, 129, 40, 0.89)",
+                "#d44a3a"
+                ],
+                "datasource": null,
+                "format": "none",
+                "gauge": {
+                "maxValue": 100,
+                "minValue": 0,
+                "show": false,
+                "thresholdLabels": false,
+                "thresholdMarkers": true
+                },
+                "gridPos": {
+                "h": 6,
+                "w": 3,
+                "x": 6,
+                "y": 1
+                },
+                "id": 6,
+                "interval": null,
+                "links": [],
+                "mappingType": 1,
+                "mappingTypes": [
+                {
+                    "name": "value to text",
+                    "value": 1
+                },
+                {
+                    "name": "range to text",
+                    "value": 2
+                }
+                ],
+                "maxDataPoints": 100,
+                "nullPointMode": "connected",
+                "nullText": null,
+                "pluginVersion": "6.7.1",
+                "postfix": "",
+                "postfixFontSize": "50%",
+                "prefix": "",
+                "prefixFontSize": "50%",
+                "rangeMaps": [
+                {
+                    "from": "null",
+                    "text": "N/A",
+                    "to": "null"
+                }
+                ],
+                "sparkline": {
+                "fillColor": "rgba(31, 118, 189, 0.18)",
+                "full": false,
+                "lineColor": "rgb(31, 120, 193)",
+                "show": false,
+                "ymax": null,
+                "ymin": null
+                },
+                "tableColumn": "",
+                "targets": [
+                {
+                    "aggregation": "Last",
+                    "alias": "status",
+                    "bucketAggs": [
+                    {
+                        "fake": true,
+                        "field": "timestamp",
+                        "id": "3",
+                        "settings": {
+                        "interval": "auto",
+                        "min_doc_count": 0,
+                        "trimEdges": 0
+                        },
+                        "type": "date_histogram"
+                    }
+                    ],
+                    "crit": 0,
+                    "decimals": 2,
+                    "displayAliasType": "Warning / Critical",
+                    "displayType": "Regular",
+                    "displayValueWithAlias": "Never",
+                    "metrics": [
+                    {
+                        "field": "number_status",
+                        "id": "1",
+                        "meta": {},
+                        "settings": {},
+                        "type": "avg"
+                    }
+                    ],
+                    "query": "_exists_: heartbeat_monitor_status AND source: confluence",
+                    "refId": "A",
+                    "timeField": "timestamp",
+                    "units": "none",
+                    "valueHandler": "Number Threshold",
+                    "warn": 0
+                }
+                ],
+                "thresholds": "99,100",
+                "timeFrom": null,
+                "timeShift": null,
+                "title": "Confluence",
+                "type": "singlestat",
+                "valueFontSize": "80%",
+                "valueMaps": [
+                {
+                    "op": "=",
+                    "text": "N/A",
+                    "value": "null"
+                }
+                ],
+                "valueName": "current"
+            },
+            {
+                "aliasColors": {},
+                "bars": false,
+                "dashLength": 10,
+                "dashes": false,
+                "datasource": null,
+                "fill": 1,
+                "fillGradient": 1,
+                "gridPos": {
+                "h": 6,
+                "w": 11,
+                "x": 9,
+                "y": 1
+                },
+                "hiddenSeries": false,
+                "id": 19,
+                "legend": {
+                "avg": false,
+                "current": false,
+                "max": false,
+                "min": false,
+                "show": true,
+                "total": false,
+                "values": false
+                },
+                "lines": true,
+                "linewidth": 1,
+                "nullPointMode": "connected",
+                "options": {
+                "dataLinks": []
+                },
+                "percentage": false,
+                "pluginVersion": "6.7.1",
+                "pointradius": 2,
+                "points": false,
+                "renderer": "flot",
+                "seriesOverrides": [],
+                "spaceLength": 10,
+                "stack": false,
+                "steppedLine": false,
+                "targets": [
+                {
+                    "bucketAggs": [
+                    {
+                        "fake": true,
+                        "field": "source",
+                        "id": "4",
+                        "settings": {
+                        "min_doc_count": 1,
+                        "order": "desc",
+                        "orderBy": "_term",
+                        "size": "10"
+                        },
+                        "type": "terms"
+                    },
+                    {
+                        "fake": true,
+                        "field": "timestamp",
+                        "id": "3",
+                        "settings": {
+                        "interval": "auto",
+                        "min_doc_count": 0,
+                        "trimEdges": 0
+                        },
+                        "type": "date_histogram"
+                    }
+                    ],
+                    "metrics": [
+                    {
+                        "field": "heartbeat_monitor_duration_us",
+                        "id": "1",
+                        "inlineScript": "_value / 1000",
+                        "meta": {},
+                        "settings": {
+                        "script": {
+                            "inline": "_value / 1000"
+                        }
+                        },
+                        "type": "avg"
+                    }
+                    ],
+                    "query": "beats_type: heartbeat AND (source: confluence OR source: jira OR source: taiga)",
+                    "refId": "A",
+                    "timeField": "timestamp"
+                }
+                ],
+                "thresholds": [],
+                "timeFrom": null,
+                "timeRegions": [],
+                "timeShift": null,
+                "title": "Average Response Times (ms)",
+                "tooltip": {
+                "shared": true,
+                "sort": 0,
+                "value_type": "individual"
+                },
+                "type": "graph",
+                "xaxis": {
+                "buckets": null,
+                "mode": "time",
+                "name": null,
+                "show": true,
+                "values": []
+                },
+                "yaxes": [
+                {
+                    "format": "short",
+                    "label": "Response Time (ms)",
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                },
+                {
+                    "format": "short",
+                    "label": "",
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                }
+                ],
+                "yaxis": {
+                "align": false,
+                "alignLevel": null
+                }
+            },
+            {
+                "collapsed": false,
+                "datasource": null,
+                "gridPos": {
+                "h": 1,
+                "w": 24,
+                "x": 0,
+                "y": 7
+                },
+                "id": 17,
+                "panels": [],
+                "title": "Deliverables",
+                "type": "row"
+            },
+            {
+                "cacheTimeout": null,
+                "colorBackground": true,
+                "colorValue": true,
+                "colors": [
+                "#299c46",
+                "rgba(237, 129, 40, 0.89)",
+                "#d44a3a"
+                ],
+                "datasource": null,
+                "format": "none",
+                "gauge": {
+                "maxValue": 100,
+                "minValue": 0,
+                "show": false,
+                "thresholdLabels": false,
+                "thresholdMarkers": true
+                },
+                "gridPos": {
+                "h": 6,
+                "w": 3,
+                "x": 0,
+                "y": 8
+                },
+                "id": 9,
+                "interval": null,
+                "links": [],
+                "mappingType": 1,
+                "mappingTypes": [
+                {
+                    "name": "value to text",
+                    "value": 1
+                },
+                {
+                    "name": "range to text",
+                    "value": 2
+                }
+                ],
+                "maxDataPoints": 100,
+                "nullPointMode": "connected",
+                "nullText": null,
+                "pluginVersion": "6.7.1",
+                "postfix": "",
+                "postfixFontSize": "50%",
+                "prefix": "",
+                "prefixFontSize": "50%",
+                "rangeMaps": [
+                {
+                    "from": "null",
+                    "text": "N/A",
+                    "to": "null"
+                }
+                ],
+                "sparkline": {
+                "fillColor": "rgba(31, 118, 189, 0.18)",
+                "full": false,
+                "lineColor": "rgb(31, 120, 193)",
+                "show": false,
+                "ymax": null,
+                "ymin": null
+                },
+                "tableColumn": "",
+                "targets": [
+                {
+                    "aggregation": "Last",
+                    "alias": "status",
+                    "bucketAggs": [
+                    {
+                        "fake": true,
+                        "field": "timestamp",
+                        "id": "3",
+                        "settings": {
+                        "interval": "auto",
+                        "min_doc_count": 0,
+                        "trimEdges": 0
+                        },
+                        "type": "date_histogram"
+                    }
+                    ],
+                    "crit": 0,
+                    "decimals": 2,
+                    "displayAliasType": "Warning / Critical",
+                    "displayType": "Regular",
+                    "displayValueWithAlias": "Never",
+                    "metrics": [
+                    {
+                        "field": "number_status",
+                        "id": "1",
+                        "meta": {},
+                        "settings": {},
+                        "type": "avg"
+                    }
+                    ],
+                    "query": "_exists_: heartbeat_monitor_status AND source: \"dts home\"",
+                    "refId": "A",
+                    "timeField": "timestamp",
+                    "units": "none",
+                    "valueHandler": "Number Threshold",
+                    "warn": 0
+                }
+                ],
+                "thresholds": "99,100",
+                "timeFrom": null,
+                "timeShift": null,
+                "title": "DTS Home",
+                "type": "singlestat",
+                "valueFontSize": "80%",
+                "valueMaps": [
+                {
+                    "op": "=",
+                    "text": "N/A",
+                    "value": "null"
+                }
+                ],
+                "valueName": "current"
+            },
+            {
+                "cacheTimeout": null,
+                "colorBackground": true,
+                "colorValue": true,
+                "colors": [
+                "#299c46",
+                "rgba(237, 129, 40, 0.89)",
+                "#d44a3a"
+                ],
+                "datasource": null,
+                "format": "none",
+                "gauge": {
+                "maxValue": 100,
+                "minValue": 0,
+                "show": false,
+                "thresholdLabels": false,
+                "thresholdMarkers": true
+                },
+                "gridPos": {
+                "h": 6,
+                "w": 3,
+                "x": 3,
+                "y": 8
+                },
+                "id": 2,
+                "interval": "",
+                "links": [],
+                "mappingType": 1,
+                "mappingTypes": [
+                {
+                    "name": "value to text",
+                    "value": 1
+                },
+                {
+                    "name": "range to text",
+                    "value": 2
+                }
+                ],
+                "maxDataPoints": 100,
+                "nullPointMode": "connected",
+                "nullText": null,
+                "pluginVersion": "6.7.1",
+                "postfix": "",
+                "postfixFontSize": "50%",
+                "prefix": "",
+                "prefixFontSize": "50%",
+                "rangeMaps": [
+                {
+                    "from": "null",
+                    "text": "N/A",
+                    "to": "null"
+                }
+                ],
+                "sparkline": {
+                "fillColor": "rgba(31, 118, 189, 0.18)",
+                "full": false,
+                "lineColor": "rgb(31, 120, 193)",
+                "show": false,
+                "ymax": null,
+                "ymin": null
+                },
+                "tableColumn": "",
+                "targets": [
+                {
+                    "aggregation": "Last",
+                    "alias": "status",
+                    "bucketAggs": [
+                    {
+                        "field": "timestamp",
+                        "id": "2",
+                        "settings": {
+                        "interval": "auto",
+                        "min_doc_count": 0,
+                        "trimEdges": 0
+                        },
+                        "type": "date_histogram"
+                    }
+                    ],
+                    "decimals": 2,
+                    "displayAliasType": "Warning / Critical",
+                    "displayType": "Regular",
+                    "displayValueWithAlias": "Never",
+                    "metrics": [
+                    {
+                        "field": "number_status",
+                        "id": "1",
+                        "meta": {},
+                        "settings": {},
+                        "type": "avg"
+                    }
+                    ],
+                    "query": "_exists_: heartbeat_monitor_status AND source: canteen",
+                    "refId": "A",
+                    "timeField": "timestamp",
+                    "units": "none",
+                    "valueDisplayRegex": "",
+                    "valueHandler": "String Threshold"
+                }
+                ],
+                "thresholds": "99,100",
+                "timeFrom": null,
+                "timeShift": null,
+                "title": "Canteen",
+                "type": "singlestat",
+                "valueFontSize": "80%",
+                "valueMaps": [
+                {
+                    "op": "=",
+                    "text": "1",
+                    "value": "down"
+                }
+                ],
+                "valueName": "current"
+            },
+            {
+                "cacheTimeout": null,
+                "colorBackground": true,
+                "colorValue": true,
+                "colors": [
+                "#299c46",
+                "rgba(237, 129, 40, 0.89)",
+                "#d44a3a"
+                ],
+                "datasource": null,
+                "format": "none",
+                "gauge": {
+                "maxValue": 100,
+                "minValue": 0,
+                "show": false,
+                "thresholdLabels": false,
+                "thresholdMarkers": true
+                },
+                "gridPos": {
+                "h": 6,
+                "w": 3,
+                "x": 6,
+                "y": 8
+                },
+                "id": 12,
+                "interval": null,
+                "links": [],
+                "mappingType": 1,
+                "mappingTypes": [
+                {
+                    "name": "value to text",
+                    "value": 1
+                },
+                {
+                    "name": "range to text",
+                    "value": 2
+                }
+                ],
+                "maxDataPoints": 100,
+                "nullPointMode": "connected",
+                "nullText": null,
+                "pluginVersion": "6.7.1",
+                "postfix": "",
+                "postfixFontSize": "50%",
+                "prefix": "",
+                "prefixFontSize": "50%",
+                "rangeMaps": [
+                {
+                    "from": "null",
+                    "text": "N/A",
+                    "to": "null"
+                }
+                ],
+                "sparkline": {
+                "fillColor": "rgba(31, 118, 189, 0.18)",
+                "full": false,
+                "lineColor": "rgb(31, 120, 193)",
+                "show": false,
+                "ymax": null,
+                "ymin": null
+                },
+                "tableColumn": "",
+                "targets": [
+                {
+                    "aggregation": "Last",
+                    "alias": "status",
+                    "bucketAggs": [
+                    {
+                        "fake": true,
+                        "field": "timestamp",
+                        "id": "3",
+                        "settings": {
+                        "interval": "auto",
+                        "min_doc_count": 0,
+                        "trimEdges": 0
+                        },
+                        "type": "date_histogram"
+                    }
+                    ],
+                    "crit": 0,
+                    "decimals": 2,
+                    "displayAliasType": "Warning / Critical",
+                    "displayType": "Regular",
+                    "displayValueWithAlias": "Never",
+                    "metrics": [
+                    {
+                        "field": "number_status",
+                        "id": "1",
+                        "meta": {},
+                        "settings": {},
+                        "type": "avg"
+                    }
+                    ],
+                    "query": "_exists_: heartbeat_monitor_status AND source: \"my ei\"",
+                    "refId": "A",
+                    "timeField": "timestamp",
+                    "units": "none",
+                    "valueHandler": "Number Threshold",
+                    "warn": 0
+                }
+                ],
+                "thresholds": "99,100",
+                "timeFrom": null,
+                "timeShift": null,
+                "title": "My EI",
+                "type": "singlestat",
+                "valueFontSize": "80%",
+                "valueMaps": [
+                {
+                    "op": "=",
+                    "text": "N/A",
+                    "value": "null"
+                }
+                ],
+                "valueName": "current"
+            },
+            {
+                "aliasColors": {},
+                "bars": false,
+                "dashLength": 10,
+                "dashes": false,
+                "datasource": null,
+                "fill": 1,
+                "fillGradient": 1,
+                "gridPos": {
+                "h": 6,
+                "w": 11,
+                "x": 9,
+                "y": 8
+                },
+                "hiddenSeries": false,
+                "id": 20,
+                "legend": {
+                "avg": false,
+                "current": false,
+                "max": false,
+                "min": false,
+                "show": true,
+                "total": false,
+                "values": false
+                },
+                "lines": true,
+                "linewidth": 1,
+                "nullPointMode": "connected",
+                "options": {
+                "dataLinks": []
+                },
+                "percentage": false,
+                "pluginVersion": "6.7.1",
+                "pointradius": 2,
+                "points": false,
+                "renderer": "flot",
+                "seriesOverrides": [],
+                "spaceLength": 10,
+                "stack": false,
+                "steppedLine": false,
+                "targets": [
+                {
+                    "bucketAggs": [
+                    {
+                        "fake": true,
+                        "field": "source",
+                        "id": "4",
+                        "settings": {
+                        "min_doc_count": 1,
+                        "order": "desc",
+                        "orderBy": "_term",
+                        "size": "10"
+                        },
+                        "type": "terms"
+                    },
+                    {
+                        "fake": true,
+                        "field": "timestamp",
+                        "id": "3",
+                        "settings": {
+                        "interval": "auto",
+                        "min_doc_count": 0,
+                        "trimEdges": 0
+                        },
+                        "type": "date_histogram"
+                    }
+                    ],
+                    "metrics": [
+                    {
+                        "field": "heartbeat_monitor_duration_us",
+                        "id": "1",
+                        "inlineScript": "_value / 1000",
+                        "meta": {},
+                        "settings": {
+                        "script": {
+                            "inline": "_value / 1000"
+                        }
+                        },
+                        "type": "avg"
+                    }
+                    ],
+                    "query": "beats_type: heartbeat AND (source: \"dts home\" OR source: canteen source: \"my ei\")",
+                    "refId": "A",
+                    "timeField": "timestamp"
+                }
+                ],
+                "thresholds": [],
+                "timeFrom": null,
+                "timeRegions": [],
+                "timeShift": null,
+                "title": "Average Response Times (ms)",
+                "tooltip": {
+                "shared": true,
+                "sort": 0,
+                "value_type": "individual"
+                },
+                "type": "graph",
+                "xaxis": {
+                "buckets": null,
+                "mode": "time",
+                "name": null,
+                "show": true,
+                "values": []
+                },
+                "yaxes": [
+                {
+                    "format": "short",
+                    "label": "Response Time (ms)",
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                },
+                {
+                    "format": "short",
+                    "label": "",
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                }
+                ],
+                "yaxis": {
+                "align": false,
+                "alignLevel": null
+                }
+            },
+            {
+                "collapsed": false,
+                "datasource": null,
+                "gridPos": {
+                "h": 1,
+                "w": 24,
+                "x": 0,
+                "y": 14
+                },
+                "id": 4,
+                "panels": [],
+                "title": "Infrastructure and ALM",
+                "type": "row"
+            },
+            {
+                "cacheTimeout": null,
+                "colorBackground": true,
+                "colorValue": true,
+                "colors": [
+                "#299c46",
+                "rgba(237, 129, 40, 0.89)",
+                "#d44a3a"
+                ],
+                "datasource": null,
+                "format": "none",
+                "gauge": {
+                "maxValue": 100,
+                "minValue": 0,
+                "show": false,
+                "thresholdLabels": false,
+                "thresholdMarkers": true
+                },
+                "gridPos": {
+                "h": 6,
+                "w": 3,
+                "x": 0,
+                "y": 15
+                },
+                "id": 8,
+                "interval": "",
+                "links": [],
+                "mappingType": 1,
+                "mappingTypes": [
+                {
+                    "name": "value to text",
+                    "value": 1
+                },
+                {
+                    "name": "range to text",
+                    "value": 2
+                }
+                ],
+                "maxDataPoints": 100,
+                "nullPointMode": "connected",
+                "nullText": null,
+                "pluginVersion": "6.7.1",
+                "postfix": "",
+                "postfixFontSize": "50%",
+                "prefix": "",
+                "prefixFontSize": "50%",
+                "rangeMaps": [
+                {
+                    "from": "null",
+                    "text": "N/A",
+                    "to": "null"
+                }
+                ],
+                "sparkline": {
+                "fillColor": "rgba(31, 118, 189, 0.18)",
+                "full": false,
+                "lineColor": "rgb(31, 120, 193)",
+                "show": false,
+                "ymax": null,
+                "ymin": null
+                },
+                "tableColumn": "",
+                "targets": [
+                {
+                    "aggregation": "Last",
+                    "alias": "status",
+                    "bucketAggs": [
+                    {
+                        "field": "timestamp",
+                        "id": "2",
+                        "settings": {
+                        "interval": "auto",
+                        "min_doc_count": 0,
+                        "trimEdges": 0
+                        },
+                        "type": "date_histogram"
+                    }
+                    ],
+                    "decimals": 2,
+                    "displayAliasType": "Warning / Critical",
+                    "displayType": "Regular",
+                    "displayValueWithAlias": "Never",
+                    "metrics": [
+                    {
+                        "field": "number_status",
+                        "id": "1",
+                        "meta": {},
+                        "settings": {},
+                        "type": "avg"
+                    }
+                    ],
+                    "query": "_exists_: heartbeat_monitor_status AND source: helm",
+                    "refId": "A",
+                    "timeField": "timestamp",
+                    "units": "none",
+                    "valueDisplayRegex": "",
+                    "valueHandler": "String Threshold"
+                }
+                ],
+                "thresholds": "99,100",
+                "timeFrom": null,
+                "timeShift": null,
+                "title": "Helm Repo",
+                "type": "singlestat",
+                "valueFontSize": "80%",
+                "valueMaps": [
+                {
+                    "op": "=",
+                    "text": "1",
+                    "value": "down"
+                }
+                ],
+                "valueName": "current"
+            },
+            {
+                "cacheTimeout": null,
+                "colorBackground": true,
+                "colorValue": true,
+                "colors": [
+                "#299c46",
+                "rgba(237, 129, 40, 0.89)",
+                "#d44a3a"
+                ],
+                "datasource": null,
+                "format": "none",
+                "gauge": {
+                "maxValue": 100,
+                "minValue": 0,
+                "show": false,
+                "thresholdLabels": false,
+                "thresholdMarkers": true
+                },
+                "gridPos": {
+                "h": 6,
+                "w": 3,
+                "x": 3,
+                "y": 15
+                },
+                "id": 11,
+                "interval": null,
+                "links": [],
+                "mappingType": 1,
+                "mappingTypes": [
+                {
+                    "name": "value to text",
+                    "value": 1
+                },
+                {
+                    "name": "range to text",
+                    "value": 2
+                }
+                ],
+                "maxDataPoints": 100,
+                "nullPointMode": "connected",
+                "nullText": null,
+                "pluginVersion": "6.7.1",
+                "postfix": "",
+                "postfixFontSize": "50%",
+                "prefix": "",
+                "prefixFontSize": "50%",
+                "rangeMaps": [
+                {
+                    "from": "null",
+                    "text": "N/A",
+                    "to": "null"
+                }
+                ],
+                "sparkline": {
+                "fillColor": "rgba(31, 118, 189, 0.18)",
+                "full": false,
+                "lineColor": "rgb(31, 120, 193)",
+                "show": false,
+                "ymax": null,
+                "ymin": null
+                },
+                "tableColumn": "",
+                "targets": [
+                {
+                    "aggregation": "Last",
+                    "alias": "status",
+                    "bucketAggs": [
+                    {
+                        "fake": true,
+                        "field": "timestamp",
+                        "id": "3",
+                        "settings": {
+                        "interval": "auto",
+                        "min_doc_count": 0,
+                        "trimEdges": 0
+                        },
+                        "type": "date_histogram"
+                    }
+                    ],
+                    "crit": 0,
+                    "decimals": 2,
+                    "displayAliasType": "Warning / Critical",
+                    "displayType": "Regular",
+                    "displayValueWithAlias": "Never",
+                    "metrics": [
+                    {
+                        "field": "number_status",
+                        "id": "1",
+                        "meta": {},
+                        "settings": {},
+                        "type": "avg"
+                    }
+                    ],
+                    "query": "_exists_: heartbeat_monitor_status AND source: \"jenkins\"",
+                    "refId": "A",
+                    "timeField": "timestamp",
+                    "units": "none",
+                    "valueHandler": "Number Threshold",
+                    "warn": 0
+                }
+                ],
+                "thresholds": "99,100",
+                "timeFrom": null,
+                "timeShift": null,
+                "title": "Jenkins",
+                "type": "singlestat",
+                "valueFontSize": "80%",
+                "valueMaps": [
+                {
+                    "op": "=",
+                    "text": "N/A",
+                    "value": "null"
+                }
+                ],
+                "valueName": "current"
+            },
+            {
+                "cacheTimeout": null,
+                "colorBackground": true,
+                "colorValue": true,
+                "colors": [
+                "#299c46",
+                "rgba(237, 129, 40, 0.89)",
+                "#d44a3a"
+                ],
+                "datasource": null,
+                "format": "none",
+                "gauge": {
+                "maxValue": 100,
+                "minValue": 0,
+                "show": false,
+                "thresholdLabels": false,
+                "thresholdMarkers": true
+                },
+                "gridPos": {
+                "h": 6,
+                "w": 3,
+                "x": 6,
+                "y": 15
+                },
+                "id": 10,
+                "interval": null,
+                "links": [],
+                "mappingType": 1,
+                "mappingTypes": [
+                {
+                    "name": "value to text",
+                    "value": 1
+                },
+                {
+                    "name": "range to text",
+                    "value": 2
+                }
+                ],
+                "maxDataPoints": 100,
+                "nullPointMode": "connected",
+                "nullText": null,
+                "pluginVersion": "6.7.1",
+                "postfix": "",
+                "postfixFontSize": "50%",
+                "prefix": "",
+                "prefixFontSize": "50%",
+                "rangeMaps": [
+                {
+                    "from": "null",
+                    "text": "N/A",
+                    "to": "null"
+                }
+                ],
+                "sparkline": {
+                "fillColor": "rgba(31, 118, 189, 0.18)",
+                "full": false,
+                "lineColor": "rgb(31, 120, 193)",
+                "show": false,
+                "ymax": null,
+                "ymin": null
+                },
+                "tableColumn": "",
+                "targets": [
+                {
+                    "aggregation": "Last",
+                    "alias": "status",
+                    "bucketAggs": [
+                    {
+                        "fake": true,
+                        "field": "timestamp",
+                        "id": "3",
+                        "settings": {
+                        "interval": "auto",
+                        "min_doc_count": 0,
+                        "trimEdges": 0
+                        },
+                        "type": "date_histogram"
+                    }
+                    ],
+                    "crit": 0,
+                    "decimals": 2,
+                    "displayAliasType": "Warning / Critical",
+                    "displayType": "Regular",
+                    "displayValueWithAlias": "Never",
+                    "metrics": [
+                    {
+                        "field": "number_status",
+                        "id": "1",
+                        "meta": {},
+                        "settings": {},
+                        "type": "avg"
+                    }
+                    ],
+                    "query": "_exists_: heartbeat_monitor_status AND source: \"grafana\"",
+                    "refId": "A",
+                    "timeField": "timestamp",
+                    "units": "none",
+                    "valueHandler": "Number Threshold",
+                    "warn": 0
+                }
+                ],
+                "thresholds": "99,100",
+                "timeFrom": null,
+                "timeShift": null,
+                "title": "Grafana",
+                "type": "singlestat",
+                "valueFontSize": "80%",
+                "valueMaps": [
+                {
+                    "op": "=",
+                    "text": "N/A",
+                    "value": "null"
+                }
+                ],
+                "valueName": "current"
+            },
+            {
+                "aliasColors": {},
+                "bars": false,
+                "dashLength": 10,
+                "dashes": false,
+                "datasource": null,
+                "fill": 1,
+                "fillGradient": 1,
+                "gridPos": {
+                "h": 6,
+                "w": 11,
+                "x": 9,
+                "y": 15
+                },
+                "hiddenSeries": false,
+                "id": 21,
+                "legend": {
+                "avg": false,
+                "current": false,
+                "max": false,
+                "min": false,
+                "show": true,
+                "total": false,
+                "values": false
+                },
+                "lines": true,
+                "linewidth": 1,
+                "nullPointMode": "connected",
+                "options": {
+                "dataLinks": []
+                },
+                "percentage": false,
+                "pluginVersion": "6.7.1",
+                "pointradius": 2,
+                "points": false,
+                "renderer": "flot",
+                "seriesOverrides": [],
+                "spaceLength": 10,
+                "stack": false,
+                "steppedLine": false,
+                "targets": [
+                {
+                    "bucketAggs": [
+                    {
+                        "fake": true,
+                        "field": "source",
+                        "id": "4",
+                        "settings": {
+                        "min_doc_count": 1,
+                        "order": "desc",
+                        "orderBy": "_term",
+                        "size": "10"
+                        },
+                        "type": "terms"
+                    },
+                    {
+                        "fake": true,
+                        "field": "timestamp",
+                        "id": "3",
+                        "settings": {
+                        "interval": "auto",
+                        "min_doc_count": 0,
+                        "trimEdges": 0
+                        },
+                        "type": "date_histogram"
+                    }
+                    ],
+                    "metrics": [
+                    {
+                        "field": "heartbeat_monitor_duration_us",
+                        "id": "1",
+                        "inlineScript": "_value / 1000",
+                        "meta": {},
+                        "settings": {
+                        "script": {
+                            "inline": "_value / 1000"
+                        }
+                        },
+                        "type": "avg"
+                    }
+                    ],
+                    "query": "beats_type: heartbeat AND (source: \"helm\" OR source: jenkins OR source: \"grafana\")",
+                    "refId": "A",
+                    "timeField": "timestamp"
+                }
+                ],
+                "thresholds": [],
+                "timeFrom": null,
+                "timeRegions": [],
+                "timeShift": null,
+                "title": "Average Response Times (ms)",
+                "tooltip": {
+                "shared": true,
+                "sort": 0,
+                "value_type": "individual"
+                },
+                "type": "graph",
+                "xaxis": {
+                "buckets": null,
+                "mode": "time",
+                "name": null,
+                "show": true,
+                "values": []
+                },
+                "yaxes": [
+                {
+                    "format": "short",
+                    "label": "Response Time (ms)",
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                },
+                {
+                    "format": "short",
+                    "label": "",
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                }
+                ],
+                "yaxis": {
+                "align": false,
+                "alignLevel": null
+                }
+            }
+            ],
+            "refresh": "5s",
+            "schemaVersion": 22,
+            "style": "dark",
+            "tags": [],
+            "templating": {
+            "list": []
+            },
+            "time": {
+            "from": "now-30s",
+            "to": "now"
+            },
+            "timepicker": {
+            "refresh_intervals": [
+                "5s",
+                "10s",
+                "30s",
+                "1m",
+                "5m",
+                "15m",
+                "30m",
+                "1h",
+                "2h",
+                "1d"
+            ]
+            },
+            "timezone": "",
+            "title": "System Status",
+            "uid": "nd7USo3Zz",
+            "variables": {
+            "list": []
+            },
+            "version": 8
+        }

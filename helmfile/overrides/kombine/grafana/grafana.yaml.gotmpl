@@ -10,7 +10,7 @@ persistence:
   enabled: false
 env:
   GF_INSTALL_PLUGINS: snuids-trafficlights-panel,vonage-status-panel,flant-statusmap-panel
-grafana.ini: 
+grafana.ini:
   paths:
     data: /var/lib/grafana/data
     logs: /var/log/grafana
@@ -19,9 +19,9 @@ grafana.ini:
   smtp:
     enabled: true
     host: "smtp.sendgrid.net:465"
-    user: "grafana-kombine-benrd"
-    password: "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"
-    from_address: "noreply@dts-stn.com"
+    user: "gocdts"
+    password: {{ requiredEnv "SENDGRID_PASSWORD" }}
+    from_address: "gocmts@gmail.com"
     from_name: "Kombine-{{ .Environment.Name }}"
 datasources: 
   datasources.yaml:
@@ -36,3 +36,15 @@ datasources:
       jsonData:
         timeField: "timestamp"
         esVersion: 60
+dashboardProviders:
+  dashboardproviders.yaml:
+    apiVersion: 1
+    providers:
+    - name: 'default'
+      orgId: 1
+      folder: ''
+      type: file
+      disableDeletion: false
+      editable: true
+      options:
+        path: /var/lib/grafana/dashboards/default
