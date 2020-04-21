@@ -1,0 +1,50 @@
+image:
+  pullPolicy: Always
+ingress:
+  enabled: true
+  hosts: 
+    - grafana.{{ .Environment.Name }}.{{ requiredEnv "ADMIN_DOMAIN"}}
+adminUser: admin
+adminPassword: "{{ requiredEnv "GRAFANA_ADMIN_PASSWORD"}}"
+persistence:
+  enabled: false
+env:
+  GF_INSTALL_PLUGINS: snuids-trafficlights-panel,vonage-status-panel,flant-statusmap-panel
+grafana.ini:
+  paths:
+    data: /var/lib/grafana/data
+    logs: /var/log/grafana
+    plugins: /var/lib/grafana/plugins
+    provisioning: /etc/grafana/provisioning
+  smtp:
+    enabled: true
+    host: "smtp.sendgrid.net:465"
+    user: "gocdts"
+    password: {{ requiredEnv "SENDGRID_PASSWORD" }}
+    from_address: "gocmts@gmail.com"
+    from_name: "Kombine-{{ .Environment.Name }}"
+datasources: 
+  datasources.yaml:
+    apiVersion: 1
+    datasources:
+    - name: Graylog-ES
+      type: elasticsearch
+      url: http://graylog-kombine-{{ .Environment.Name }}-elasticsearch-client:9200
+      access: proxy
+      isDefault: true
+      database: "graylog_0"
+      jsonData:
+        timeField: "timestamp"
+        esVersion: 60
+dashboardProviders:
+  dashboardproviders.yaml:
+    apiVersion: 1
+    providers:
+    - name: 'default'
+      orgId: 1
+      folder: ''
+      type: file
+      disableDeletion: false
+      editable: true
+      options:
+        path: /var/lib/grafana/dashboards/default
