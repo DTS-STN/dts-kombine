@@ -58,7 +58,4 @@ variable "K8_SERVICE_CIDR" {
 variable "KEYVAULT_NAME" {
   default = "kombine-keyvault"
 }
-variable "KEYVAULT_NAME" {
-  default = "kombine-keyvault"
-}
 
