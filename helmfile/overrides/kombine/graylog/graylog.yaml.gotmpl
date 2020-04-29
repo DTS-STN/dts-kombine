@@ -3,9 +3,9 @@ graylog:
         enabled: true
     serverFiles:
         server.cert: | 
-        {{ requiredEnv "TF_VAR_KOMBINE_TLS_CERT" }} 
+        {{ requiredEnv "TF_VAR_KOMBINE_TLS_CERT" | quote | indent 2 }}
         server.key: | 
-        {{ requiredEnv "TF_VAR_KOMBINE_TLS_KEY" }}
+        {{ requiredEnv "TF_VAR_KOMBINE_TLS_KEY" | quote | indent 2 }}
     ingress:
         enabled: true
         annotations:
