@@ -2,14 +2,16 @@ graylog:
     tls:
         enabled: true
     serverFiles:
-        server.cert: | {{ requiredEnv "TF_VAR_KOMBINE_TLS_CERT" }}
-        server.key: | {{ requiredEnv "TF_VAR_KOMBINE_TLS_KEY" }}
+        server.cert: | 
+        {{ requiredEnv "TF_VAR_KOMBINE_TLS_CERT" }} 
+        server.key: | 
+        {{ requiredEnv "TF_VAR_KOMBINE_TLS_KEY" }}
     ingress:
         enabled: true
         annotations:
         # kubernetes.io/ingress.class: traefik
         # kubernetes.io/tls-acme: "true"
-        path: /
+        path: / 
         protocol: https
         hosts:
 {{- if or (eq .Environment.Name "prod-blue") (eq .Environment.Name "prod-green") }}
