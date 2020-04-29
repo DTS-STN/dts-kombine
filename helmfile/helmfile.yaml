@@ -75,6 +75,23 @@ releases:
     installed: true
     force: false    
 
+
+# Grafana
+  - name: grafana
+    chart: stable/grafana
+    version: 5.0.9
+    values:
+      - overrides/kombine/grafana/grafana.yaml.gotmpl
+      - overrides/kombine/grafana/dashboards/dtsSystemStatus.json.yaml
+    labels:
+        category: kombine
+        app: grafana
+        tier: frontend
+    namespace: kombine-{{ .Environment.Name }}
+    installed: true
+    wait: false
+    force: false   
+    
 # ALM Tools
 {{ if or (eq .Environment.Name "prod-blue") (eq .Environment.Name "prod-green") }}
   - name: jenkins-{{ .Environment.Name }}
