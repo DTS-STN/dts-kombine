@@ -17,4 +17,3 @@ export TF_VAR_K8_CLUSTER_SP_ID=$(az keyvault secret show --name EED-K8-CLUSTER-S
 export TF_VAR_K8_CLUSTER_SP_PASS=$(az keyvault secret show --name EED-K8-CLUSTER-SP-PASS --vault-name MtsSecrets --query value -otsv)
 export TF_VAR_SSH_PUB=$(az keyvault secret show --name EED-SSH-PUB --vault-name MtsSecrets --query value -otsv)
 echo done...
-

@@ -1,10 +1,17 @@
 graylog:
+    tls:
+        enabled: false
+    serverFiles:
+        server.cert: | 
+        {{ requiredEnv "TF_VAR_KOMBINE_TLS_CERT" | quote | indent 2 }}
+        server.key: | 
+        {{ requiredEnv "TF_VAR_KOMBINE_TLS_KEY" | quote | indent 2 }}
     ingress:
         enabled: true
         annotations:
         # kubernetes.io/ingress.class: traefik
         # kubernetes.io/tls-acme: "true"
-        path: /
+        path: / 
         protocol: https
         hosts:
 {{- if or (eq .Environment.Name "prod-blue") (eq .Environment.Name "prod-green") }}
@@ -44,3 +51,26 @@ graylog:
         fromEmail: "gocmts@gmail.com"
     image:
         repository: "graylog/graylog:3.2.4"
+{{- if or (eq .Environment.Name "prod-blue") (eq .Environment.Name "prod-green") }}
+    replicas: 2
+elasticsearch:
+    client:
+        replicas: 2
+    master:
+        replicas: 3
+    data:
+        replicas: 3
+mongodb-replicaset:
+    replicas: 3
+{{- else }}
+    replicas: 1
+elasticsearch:
+    client:
+        replicas: 1
+    master:
+        replicas: 2
+    data:
+        replicas: 1
+mongodb-replicaset:
+    replicas: 2
+{{- end }}
