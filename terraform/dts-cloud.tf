@@ -132,78 +132,22 @@ resource "azurerm_key_vault" "keyvault" {
     Project = "DTS"
   }
 }
-s
-resource "tls_private_key" "kombine-tls-key" {
-  algorithm = "ECDSA"
-}
 
-resource "tls_self_signed_cert" "kombine-tls-cert" {
-  key_algorithm   = tls_private_key.kombine-tls-key.algorithm
-  private_key_pem = tls_private_key.kombine-tls-key.private_key_pem
-  validity_period_hours = 8760
-  early_renewal_hours = 3
-  # Reasonable set of uses for a server SSL certificate.
-  allowed_uses = [
-      "key_encipherment",
-      "digital_signature",
-      "server_auth",
-  ]
-  subject {
-      common_name  = "graylog.marcusrd.dts-stn.com"
-      organization = "DTS-STN"
+resource "azurerm_storage_account" "dtskombinestorage" {
+  name                     = var.KOMBINE_STORAGE_ACCOUNT
+  resource_group_name      = azurerm_resource_group.main.name
+  location                 = azurerm_resource_group.main.location
+  account_tier             = "Standard"
+  account_replication_type = "GRS"
+
+  tags = {
+    environment = var.TERRAFORM_ENVIRONMENT_NAME
   }
 }
 
-resource "azurerm_key_vault_certificate" "kombine-example-cert" {
-  name         = "kombine-example-cert"
-  key_vault_id = azurerm_key_vault.keyvault.id
-
-  certificate_policy {
-    issuer_parameters {
-      name = "Self"
-    }
-
-    key_properties {
-      exportable = true
-      key_size   = 2048
-      key_type   = "RSA"
-      reuse_key  = true
-    }
-
-    lifetime_action {
-      action {
-        action_type = "AutoRenew"
-      }
-
-      trigger {
-        days_before_expiry = 30
-      }
-    }
-
-    secret_properties {
-      content_type = "application/x-pkcs12"
-    }
-
-    x509_certificate_properties {
-      # Server Authentication = 1.3.6.1.5.5.7.3.1
-      # Client Authentication = 1.3.6.1.5.5.7.3.2
-      extended_key_usage = ["1.3.6.1.5.5.7.3.1"]
-
-      key_usage = [
-        "cRLSign",
-        "dataEncipherment",
-        "digitalSignature",
-        "keyAgreement",
-        "keyCertSign",
-        "keyEncipherment",
-      ]
-
-      subject_alternative_names {
-        dns_names = ["dts.stn.com"]
-      }
-
-      subject            = "CN=dts-stn.com"
-      validity_in_months = 12
-    }
-  }
+resource "azurerm_storage_share" "dtskombinefileshare" {
+  name                 = var.KOMBINE_FILE_SHARE
+  storage_account_name = azurerm_storage_account.dtskombinestorage.name
+  quota                = 50
 }
+
