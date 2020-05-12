@@ -11,7 +11,7 @@ echo Done.
 echo Removing certs from source...
 rm cert.pem pkcs8-plain.pem
 echo Done.
-elif [[ "$MESSAGE" == "false" ]]; then
+elif [[ "$EXISTS" == "false" ]]; then
 echo No existing certs, creating now...
 echo "[req]
 distinguished_name = req_distinguished_name
