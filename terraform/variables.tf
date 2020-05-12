@@ -10,6 +10,14 @@ variable "KOMBINE_RG_NAME" {
 variable "KOMBINE_DATA_RG_NAME" {
   default = "EsDCKombineRG_DATA"
 }
+
+variable "KOMBINE_STORAGE_ACCOUNT" {
+  default = "dtskombinestorage"
+}
+
+variable "KOMBINE_FILE_SHARE" {
+  default = "dtskombinefileshare"
+}
 variable "LOCATION" {
   default = "CanadaCentral"
 }
