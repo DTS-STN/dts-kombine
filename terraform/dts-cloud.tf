@@ -1,3 +1,12 @@
+terraform {
+  backend "azurerm" {
+    resource_group_name = "MTSDepot"
+    storage_account_name  = "d38dedd245ba4c1fb2026acd"
+    container_name        = "kombinetfstate"
+    key                   = "terraform.tfstate"
+  }
+}
+
 provider "azurerm" {
   version = "~> 2.0.0"
   features {}
@@ -151,3 +160,16 @@ resource "azurerm_storage_share" "dtskombinefileshare" {
   quota                = 50
 }
 
+resource "azurerm_storage_container" "kombinetfstate" {
+  name                  = "kombinetfstate"
+  storage_account_name  = "d38dedd245ba4c1fb2026acd"
+  container_access_type = "private"
+}
+
+resource "azurerm_storage_blob" "tfstate" {
+  name                   = "terraform.tfstate"
+  storage_account_name   = "d38dedd245ba4c1fb2026acd"
+  storage_container_name = azurerm_storage_container.kombinetfstate.name
+  type                   = "Block"
+  source                 = "terraform.tfstate"
+}

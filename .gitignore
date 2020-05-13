@@ -4,3 +4,5 @@
 windows-installer/beats-installer/.vscode
 windows-installer/beats-installer/bin
 windows-installer/beats-installer/obj
+terraform.tfstate
+terraform.tfstate.backup
