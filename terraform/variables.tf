@@ -18,6 +18,10 @@ variable "KOMBINE_STORAGE_ACCOUNT" {
 variable "KOMBINE_FILE_SHARE" {
   default = "dtskombinefileshare"
 }
+
+variable "KOMBINE_TFSTATE" {
+  default = "kombinetfstate"
+}
 variable "LOCATION" {
   default = "CanadaCentral"
 }

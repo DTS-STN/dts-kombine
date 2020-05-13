@@ -161,7 +161,7 @@ resource "azurerm_storage_share" "dtskombinefileshare" {
 }
 
 resource "azurerm_storage_container" "kombinetfstate" {
-  name                  = "kombinetfstate"
+  name                  = var.KOMBINE_TFSTATE
   storage_account_name  = azurerm_storage_account.dtskombinestorage.name
   container_access_type = "private"
 }
