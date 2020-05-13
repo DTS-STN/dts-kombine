@@ -20,8 +20,11 @@ cd ..
 
 pushd terraform
 
+terraform import azurerm_resource_group.main /subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP_NAME
+
 terraform import azurerm_storage_account.$STORAGE_ACCOUNT_NAME /subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP_NAME/providers/Microsoft.Storage/storageAccounts/$STORAGE_ACCOUNT_NAME
 
+terraform import azurerm_storage_container.$CONTAINER_NAME https://$STORAGE_ACCOUNT_NAME.blob.core.windows.net/$CONTAINER_NAME
 terraform init
 
-terraform plan
+terraform apply
