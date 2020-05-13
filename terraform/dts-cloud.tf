@@ -1,3 +1,12 @@
+terraform {
+  backend "azurerm" {
+    resource_group_name = "EsDCKombineRG"
+    storage_account_name  = "dtskombinestorage"
+    container_name        = "kombinetfstate"
+    key                   = "terraform.tfstate"
+  }
+}
+
 provider "azurerm" {
   version = "~> 2.0.0"
   features {}
@@ -133,23 +142,26 @@ resource "azurerm_key_vault" "keyvault" {
   }
 }
 
-resource "tls_private_key" "kombine-tls-key" {
-  algorithm = "ECDSA"
+resource "azurerm_storage_account" "dtskombinestorage" {
+  name                     = var.KOMBINE_STORAGE_ACCOUNT
+  resource_group_name      = azurerm_resource_group.main.name
+  location                 = azurerm_resource_group.main.location
+  account_tier             = "Standard"
+  account_replication_type = "LRS"
+
+  tags = {
+    environment = var.TERRAFORM_ENVIRONMENT_NAME
+  }
 }
 
-resource "tls_self_signed_cert" "kombine-tls-cert" {
-  key_algorithm   = tls_private_key.kombine-tls-key.algorithm
-  private_key_pem = tls_private_key.kombine-tls-key.private_key_pem
-  validity_period_hours = 8760
-  early_renewal_hours = 3
-  # Reasonable set of uses for a server SSL certificate.
-  allowed_uses = [
-      "key_encipherment",
-      "digital_signature",
-      "server_auth",
-  ]
-  subject {
-      common_name  = "DTS-STN"
-      organization = "DTS-STN"
-  }
+resource "azurerm_storage_share" "dtskombinefileshare" {
+  name                 = var.KOMBINE_FILE_SHARE
+  storage_account_name = azurerm_storage_account.dtskombinestorage.name
+  quota                = 50
+}
+
+resource "azurerm_storage_container" "kombinetfstate" {
+  name                  = var.KOMBINE_TFSTATE
+  storage_account_name  = azurerm_storage_account.dtskombinestorage.name
+  container_access_type = "private"
 }

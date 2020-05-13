@@ -1,11 +1,13 @@
 graylog:
     tls:
         enabled: false
+        certFile: /etc/graylog/server/server.cert
+        keyFile: /etc/graylog/server/server.key
     serverFiles:
-        server.cert: | 
-        {{ requiredEnv "TF_VAR_KOMBINE_TLS_CERT" | quote | indent 2 }}
-        server.key: | 
-        {{ requiredEnv "TF_VAR_KOMBINE_TLS_KEY" | quote | indent 2 }}
+        server.cert: 
+        {{ requiredEnv "TF_VAR_KOMBINE_TLS_CERT" | quote | indent 4 }}
+        server.key: 
+        {{ requiredEnv "TF_VAR_KOMBINE_TLS_KEY" | quote | indent 4 }}
     ingress:
         enabled: true
         annotations:

@@ -18,8 +18,8 @@ export TF_VAR_ENVIRONMENT_NAME=covid-dev
 export TF_VAR_SECONDARY_ENVIRONMENT_NAME=covid-staging
 export TF_VAR_CLASSIFICATION=Unclassified
 export TF_VAR_TERRAFORM_ENVIRONMENT_NAME=Sandbox
-export TF_VAR_KOMBINE_TLS_CERT=`az keyvault secret show --name kombine-tls-cert --vault-name kombine-keyvault-Sandbox --query value -otsv`
-export TF_VAR_KOMBINE_TLS_KEY=`az keyvault secret show --name kombine-tls-key --vault-name kombine-keyvault-Sandbox --query value -otsv`
 az aks get-credentials --resource-group DTS-Dev --name DTS-Dev-K8S
+echo Setting up TLS Certs
+. ./scripts/setupCerts.sh
 echo Creating namespaces because Helm3.
 ./scripts/setup/createNamespaces.sh covid-dev &>/dev/null
